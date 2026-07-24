@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" shape-rendering="crispEdges">
+  <title>千机妖尊</title>
+  <rect x="8" y="68" width="56" height="3" fill="#080a0d"/>
+
+  <!-- broken gear halo -->
+  <rect x="3" y="20" width="8" height="25" fill="#5c432b"/>
+  <rect x="6" y="13" width="8" height="8" fill="#9a6e34"/>
+  <rect x="1" y="27" width="9" height="8" fill="#c39a47"/>
+  <rect x="5" y="43" width="9" height="8" fill="#9a6e34"/>
+  <rect x="10" y="9" width="7" height="8" fill="#d3aa53"/>
+  <rect x="9" y="49" width="8" height="8" fill="#d3aa53"/>
+  <rect x="61" y="20" width="8" height="25" fill="#5c432b"/>
+  <rect x="58" y="13" width="8" height="8" fill="#9a6e34"/>
+  <rect x="63" y="27" width="8" height="8" fill="#c39a47"/>
+  <rect x="58" y="43" width="9" height="8" fill="#9a6e34"/>
+  <rect x="55" y="9" width="7" height="8" fill="#d3aa53"/>
+  <rect x="55" y="49" width="8" height="8" fill="#d3aa53"/>
+  <rect x="5" y="23" width="4" height="19" fill="#72e5df"/>
+  <rect x="64" y="23" width="4" height="19" fill="#72e5df"/>
+
+  <!-- upper projector arms -->
+  <rect x="10" y="20" width="13" height="7" fill="#342b31"/>
+  <rect x="7" y="18" width="9" height="10" fill="#8c6132"/>
+  <rect x="1" y="16" width="9" height="14" fill="#b8873d"/>
+  <rect x="0" y="19" width="5" height="8" fill="#e0b85b"/>
+  <rect x="2" y="21" width="6" height="4" fill="#8ff4ed"/>
+  <rect x="49" y="20" width="13" height="7" fill="#342b31"/>
+  <rect x="58" y="18" width="8" height="10" fill="#8c6132"/>
+  <rect x="63" y="16" width="9" height="14" fill="#b8873d"/>
+  <rect x="67" y="19" width="5" height="8" fill="#e0b85b"/>
+  <rect x="64" y="21" width="6" height="4" fill="#8ff4ed"/>
+
+  <!-- gear-tooth crown -->
+  <rect x="22" y="3" width="5" height="8" fill="#d5aa4d"/>
+  <rect x="29" y="0" width="5" height="9" fill="#a87835"/>
+  <rect x="36" y="2" width="5" height="8" fill="#e0b85b"/>
+  <rect x="43" y="0" width="5" height="10" fill="#a87835"/>
+  <rect x="19" y="8" width="34" height="7" fill="#5f432c"/>
+  <rect x="23" y="5" width="26" height="8" fill="#b58439"/>
+  <rect x="27" y="8" width="18" height="6" fill="#e0b85b"/>
+  <rect x="32" y="7" width="8" height="8" fill="#46303a"/>
+  <rect x="34" y="8" width="4" height="5" fill="#9bf8ef"/>
+
+  <!-- mask and cyan eyes -->
+  <rect x="23" y="14" width="27" height="15" fill="#29252c"/>
+  <rect x="27" y="16" width="19" height="12" fill="#64503b"/>
+  <rect x="25" y="17" width="9" height="5" fill="#352c32"/>
+  <rect x="39" y="17" width="9" height="5" fill="#352c32"/>
+  <rect x="28" y="18" width="6" height="3" fill="#77eee7"/>
+  <rect x="39" y="18" width="6" height="3" fill="#77eee7"/>
+  <rect x="34" y="19" width="5" height="7" fill="#9a713d"/>
+  <rect x="29" y="25" width="15" height="4" fill="#302630"/>
+  <rect x="32" y="25" width="9" height="2" fill="#d6ab54"/>
+
+  <!-- guardian-lion shoulder housings -->
+  <rect x="11" y="28" width="17" height="17" fill="#3a3033"/>
+  <rect x="8" y="30" width="16" height="14" fill="#8e6534"/>
+  <rect x="10" y="27" width="13" height="8" fill="#c99b46"/>
+  <rect x="11" y="30" width="4" height="4" fill="#83eee6"/>
+  <rect x="18" y="30" width="4" height="4" fill="#83eee6"/>
+  <rect x="13" y="36" width="8" height="4" fill="#332830"/>
+  <rect x="15" y="39" width="4" height="5" fill="#e2b65c"/>
+  <rect x="45" y="28" width="17" height="17" fill="#3a3033"/>
+  <rect x="49" y="30" width="15" height="14" fill="#8e6534"/>
+  <rect x="50" y="27" width="13" height="8" fill="#c99b46"/>
+  <rect x="51" y="30" width="4" height="4" fill="#83eee6"/>
+  <rect x="58" y="30" width="4" height="4" fill="#83eee6"/>
+  <rect x="51" y="36" width="8" height="4" fill="#332830"/>
+  <rect x="53" y="39" width="4" height="5" fill="#e2b65c"/>
+
+  <!-- segmented torso -->
+  <rect x="22" y="28" width="29" height="34" fill="#29252d"/>
+  <rect x="25" y="30" width="23" height="28" fill="#74512f"/>
+  <rect x="28" y="31" width="17" height="26" fill="#a87635"/>
+  <rect x="25" y="34" width="23" height="3" fill="#d6aa51"/>
+  <rect x="25" y="45" width="23" height="3" fill="#d6aa51"/>
+  <rect x="29" y="50" width="15" height="3" fill="#3d3037"/>
+  <rect x="31" y="31" width="11" height="16" fill="#332939"/>
+  <rect x="29" y="34" width="15" height="12" fill="#5d4551"/>
+  <rect x="32" y="35" width="9" height="10" fill="#61dcd8"/>
+  <rect x="34" y="36" width="5" height="8" fill="#d7fff2"/>
+  <rect x="33" y="38" width="7" height="4" fill="#88fff1"/>
+  <rect x="26" y="40" width="4" height="4" fill="#e0b45a"/>
+  <rect x="43" y="40" width="4" height="4" fill="#e0b45a"/>
+
+  <!-- lower arms: gear blade and crossbow mechanism -->
+  <rect x="12" y="43" width="14" height="8" fill="#4a3530"/>
+  <rect x="6" y="47" width="13" height="7" fill="#b4823d"/>
+  <rect x="1" y="45" width="8" height="11" fill="#d2a650"/>
+  <rect x="0" y="48" width="5" height="5" fill="#78e9e2"/>
+  <rect x="4" y="54" width="5" height="5" fill="#8c6331"/>
+  <path d="M1 58h5v-3h5v3h3v5h-3v4H6v-3H1z" fill="#d5aa51"/>
+  <rect x="3" y="60" width="8" height="3" fill="#6ee4df"/>
+  <rect x="47" y="43" width="14" height="8" fill="#4a3530"/>
+  <rect x="55" y="47" width="13" height="7" fill="#b4823d"/>
+  <rect x="61" y="44" width="9" height="12" fill="#d2a650"/>
+  <rect x="64" y="47" width="8" height="3" fill="#74ebe4"/>
+  <rect x="59" y="51" width="13" height="3" fill="#5a4030"/>
+  <rect x="65" y="54" width="3" height="8" fill="#b68039"/>
+  <rect x="61" y="58" width="11" height="3" fill="#d9ae55"/>
+
+  <!-- ritual skirt and grounded legs -->
+  <rect x="20" y="56" width="33" height="7" fill="#3b2b3f"/>
+  <rect x="23" y="59" width="8" height="9" fill="#4c3158"/>
+  <rect x="33" y="58" width="8" height="11" fill="#6a3d70"/>
+  <rect x="43" y="59" width="8" height="9" fill="#4c3158"/>
+  <rect x="25" y="62" width="4" height="3" fill="#d6aa51"/>
+  <rect x="35" y="62" width="4" height="3" fill="#7cf0e8"/>
+  <rect x="45" y="62" width="4" height="3" fill="#d6aa51"/>
+  <rect x="19" y="66" width="15" height="4" fill="#28252b"/>
+  <rect x="40" y="66" width="15" height="4" fill="#28252b"/>
+  <rect x="17" y="69" width="18" height="2" fill="#15161a"/>
+  <rect x="39" y="69" width="18" height="2" fill="#15161a"/>
+</svg>

@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" shape-rendering="crispEdges">
+  <title>赤焰山君</title>
+  <rect x="9" y="67" width="51" height="4" fill="#08090c"/>
+
+  <!-- oversized crescent guandao -->
+  <rect x="58" y="17" width="5" height="49" fill="#352622"/>
+  <rect x="59" y="17" width="2" height="49" fill="#8d6334"/>
+  <rect x="54" y="61" width="13" height="5" fill="#c39a48"/>
+  <rect x="56" y="13" width="9" height="7" fill="#d8aa4e"/>
+  <rect x="51" y="15" width="17" height="3" fill="#8b2728"/>
+  <rect x="64" y="16" width="5" height="11" fill="#bd3e2d"/>
+  <rect x="68" y="18" width="3" height="7" fill="#ef6940"/>
+  <path d="M52 3h12v3h4v4h3v8h-4v4h-7v-3h-8v-4h4V9h-8V6h4z" fill="#e5dfca"/>
+  <path d="M55 5h9v3h4v7h-3v3h-8v-3h4V9h-6z" fill="#fff5dc"/>
+  <rect x="48" y="6" width="4" height="11" fill="#7d858a"/>
+  <rect x="52" y="17" width="13" height="3" fill="#b8a36f"/>
+
+  <!-- plume and horned helmet -->
+  <rect x="31" y="0" width="7" height="5" fill="#ef4d32"/>
+  <rect x="27" y="3" width="12" height="5" fill="#b9342d"/>
+  <rect x="23" y="5" width="6" height="5" fill="#6f2024"/>
+  <rect x="38" y="2" width="5" height="7" fill="#e35b32"/>
+  <rect x="17" y="8" width="8" height="4" fill="#d1a34b"/>
+  <rect x="14" y="5" width="5" height="5" fill="#eee0b4"/>
+  <rect x="46" y="8" width="8" height="4" fill="#d1a34b"/>
+  <rect x="52" y="5" width="5" height="5" fill="#eee0b4"/>
+  <rect x="20" y="7" width="31" height="8" fill="#25232a"/>
+  <rect x="23" y="5" width="25" height="5" fill="#3b3439"/>
+  <rect x="26" y="8" width="19" height="7" fill="#5a2c2d"/>
+  <rect x="31" y="7" width="8" height="8" fill="#b53b2f"/>
+  <rect x="34" y="8" width="3" height="6" fill="#f0aa49"/>
+
+  <!-- face -->
+  <rect x="24" y="14" width="24" height="14" fill="#bd7651"/>
+  <rect x="27" y="16" width="18" height="11" fill="#d49162"/>
+  <rect x="27" y="17" width="6" height="3" fill="#3a2020"/>
+  <rect x="40" y="17" width="6" height="3" fill="#3a2020"/>
+  <rect x="29" y="18" width="3" height="2" fill="#fff0c9"/>
+  <rect x="41" y="18" width="3" height="2" fill="#fff0c9"/>
+  <rect x="34" y="20" width="5" height="5" fill="#a65f43"/>
+  <rect x="28" y="24" width="17" height="5" fill="#482325"/>
+  <rect x="31" y="24" width="11" height="3" fill="#6f3028"/>
+
+  <!-- tiger-pelt shoulders -->
+  <rect x="10" y="27" width="16" height="18" fill="#4a2927"/>
+  <rect x="5" y="31" width="12" height="15" fill="#a94b31"/>
+  <rect x="7" y="29" width="14" height="6" fill="#d16b3b"/>
+  <rect x="7" y="36" width="8" height="3" fill="#272126"/>
+  <rect x="5" y="42" width="10" height="4" fill="#272126"/>
+  <rect x="46" y="27" width="14" height="18" fill="#4a2927"/>
+  <rect x="54" y="31" width="9" height="15" fill="#a94b31"/>
+  <rect x="51" y="29" width="11" height="6" fill="#d16b3b"/>
+  <rect x="55" y="36" width="7" height="3" fill="#272126"/>
+  <rect x="56" y="42" width="7" height="4" fill="#272126"/>
+  <rect x="11" y="27" width="5" height="5" fill="#ead5ad"/>
+  <rect x="55" y="27" width="5" height="5" fill="#ead5ad"/>
+
+  <!-- lamellar torso -->
+  <rect x="19" y="27" width="35" height="31" fill="#30252a"/>
+  <rect x="22" y="29" width="29" height="25" fill="#74302d"/>
+  <rect x="26" y="30" width="21" height="22" fill="#a33f31"/>
+  <rect x="30" y="31" width="13" height="19" fill="#c65a36"/>
+  <rect x="21" y="33" width="31" height="3" fill="#d0a14a"/>
+  <rect x="23" y="39" width="27" height="3" fill="#4c2929"/>
+  <rect x="23" y="45" width="27" height="3" fill="#4c2929"/>
+  <rect x="28" y="33" width="3" height="17" fill="#edb853"/>
+  <rect x="42" y="33" width="3" height="17" fill="#edb853"/>
+  <rect x="33" y="35" width="8" height="9" fill="#33252a"/>
+  <rect x="35" y="37" width="4" height="5" fill="#ffd477"/>
+  <rect x="18" y="51" width="36" height="6" fill="#d0a14a"/>
+  <rect x="30" y="51" width="13" height="6" fill="#ffe08a"/>
+  <rect x="34" y="52" width="5" height="4" fill="#9f352d"/>
+
+  <!-- arms and bracers -->
+  <rect x="8" y="42" width="12" height="15" fill="#6d302d"/>
+  <rect x="5" y="50" width="11" height="10" fill="#bd7651"/>
+  <rect x="5" y="48" width="13" height="5" fill="#d5a64c"/>
+  <rect x="50" y="42" width="11" height="15" fill="#6d302d"/>
+  <rect x="55" y="50" width="9" height="10" fill="#bd7651"/>
+  <rect x="52" y="48" width="12" height="5" fill="#d5a64c"/>
+
+  <!-- armored skirt and stance -->
+  <rect x="18" y="57" width="36" height="7" fill="#41272a"/>
+  <rect x="20" y="58" width="9" height="8" fill="#83342f"/>
+  <rect x="32" y="58" width="9" height="9" fill="#a44332"/>
+  <rect x="44" y="58" width="9" height="8" fill="#83342f"/>
+  <rect x="16" y="64" width="16" height="5" fill="#292329"/>
+  <rect x="42" y="64" width="15" height="5" fill="#292329"/>
+  <rect x="14" y="67" width="19" height="3" fill="#17171b"/>
+  <rect x="41" y="67" width="18" height="3" fill="#17171b"/>
+</svg>

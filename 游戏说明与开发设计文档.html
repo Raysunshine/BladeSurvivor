@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#06111d">
+  <title>旋刀录｜游戏说明与开发设计文档</title>
+  <style>
+    :root{--bg:#06111d;--panel:#0b1b2b;--panel2:#10263a;--line:#24475d;--text:#e9f7fb;--muted:#97b7c5;--cyan:#61e9ff;--blue:#6988ff;--gold:#ffd873;--green:#91efad;--shadow:0 22px 70px rgba(0,0,0,.38)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:28px}body{margin:0;background:radial-gradient(circle at 75% 5%,rgba(57,130,181,.2),transparent 28%),radial-gradient(circle at 5% 25%,rgba(85,102,255,.12),transparent 25%),var(--bg);color:var(--text);font:15px/1.85 "Microsoft YaHei","Noto Sans SC",system-ui,sans-serif}
+    body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.12;background-image:linear-gradient(rgba(97,233,255,.18) 1px,transparent 1px),linear-gradient(90deg,rgba(97,233,255,.18) 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(to bottom,#000,transparent 70%)}
+    .shell{display:grid;grid-template-columns:270px minmax(0,900px);gap:34px;max-width:1240px;margin:auto;padding:30px 24px 80px}.sidebar{position:sticky;top:22px;align-self:start;max-height:calc(100vh - 44px);overflow:auto;padding:22px 17px;border:1px solid rgba(97,233,255,.16);border-radius:18px;background:rgba(7,22,35,.88);backdrop-filter:blur(18px);box-shadow:var(--shadow)}
+    .brand{padding:4px 8px 18px;border-bottom:1px solid var(--line);margin-bottom:12px}.brand b{display:block;color:var(--cyan);font-size:20px;letter-spacing:2px}.brand small{color:var(--muted)}nav{display:grid;gap:2px}nav a{display:flex;gap:10px;align-items:center;padding:7px 9px;border-radius:8px;color:#b8d1db;text-decoration:none;font-size:12px;transition:.2s}nav a:hover{color:white;background:rgba(97,233,255,.1);transform:translateX(3px)}nav span{color:#4d8197;font:10px ui-monospace,monospace}
+    main{min-width:0}.hero{position:relative;overflow:hidden;padding:48px 48px 42px;margin-bottom:26px;border:1px solid rgba(97,233,255,.25);border-radius:24px;background:linear-gradient(135deg,rgba(16,44,66,.96),rgba(7,20,33,.96));box-shadow:var(--shadow)}.hero:after{content:"刃";position:absolute;right:24px;top:-48px;color:rgba(97,233,255,.055);font:260px/1 serif;transform:rotate(12deg)}.eyebrow{color:var(--cyan);font-size:12px;font-weight:800;letter-spacing:4px}.hero h1{position:relative;margin:9px 0 8px;font-size:clamp(34px,6vw,62px);line-height:1.05;letter-spacing:5px;text-shadow:0 0 26px rgba(97,233,255,.24)}.hero p{position:relative;margin:0;color:#acd0dd;font-size:16px}.badges{position:relative;display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}.badges span{padding:5px 10px;border:1px solid rgba(97,233,255,.22);border-radius:999px;background:rgba(97,233,255,.06);color:#c8f8ff;font-size:11px}
+    article{padding:22px 44px 54px;border:1px solid rgba(151,183,197,.12);border-radius:22px;background:rgba(8,24,38,.82);box-shadow:var(--shadow)}h1:first-child{display:none}h2{margin:46px 0 18px;padding:0 0 10px;border-bottom:1px solid var(--line);color:white;font-size:27px;line-height:1.35}h2:before{content:"";display:inline-block;width:5px;height:25px;margin-right:12px;border-radius:5px;background:linear-gradient(var(--cyan),var(--blue));vertical-align:-3px;box-shadow:0 0 14px rgba(97,233,255,.55)}h3{margin:30px 0 10px;color:var(--cyan);font-size:20px}h4{color:var(--gold)}p{color:#c3d8e1;margin:10px 0 15px}strong{color:white}code{padding:2px 7px;border:1px solid #28516a;border-radius:6px;background:#071522;color:#8cf2ff;font:13px ui-monospace,Consolas,monospace}hr{height:1px;border:0;background:linear-gradient(90deg,transparent,var(--line),transparent);margin:42px 0}ul,ol{margin:10px 0 19px;padding-left:25px;color:#c8dce4}li{padding:3px 0}li::marker{color:var(--cyan);font-weight:800}
+    .table-wrap{overflow:auto;margin:16px 0 25px;border:1px solid var(--line);border-radius:13px;background:#081724}table{width:100%;border-collapse:collapse;min-width:540px;font-size:13px}th{padding:12px 14px;background:linear-gradient(180deg,#14344a,#102b3e);color:#dffaff;text-align:left;white-space:nowrap}td{padding:11px 14px;border-top:1px solid rgba(65,111,136,.35);color:#bdd1da}tbody tr:nth-child(even){background:rgba(97,233,255,.025)}tbody tr:hover{background:rgba(97,233,255,.07)}td:not(:first-child){font-variant-numeric:tabular-nums}
+    .footer{padding:26px;text-align:center;color:#6f94a4;font-size:12px}.top{position:fixed;right:22px;bottom:22px;width:44px;height:44px;display:grid;place-items:center;border:1px solid rgba(97,233,255,.35);border-radius:50%;background:#102b3d;color:var(--cyan);text-decoration:none;box-shadow:var(--shadow)}
+    @media(max-width:900px){.shell{display:block;padding:14px}.sidebar{position:relative;top:0;max-height:none;margin-bottom:16px}.sidebar nav{grid-template-columns:repeat(2,minmax(0,1fr))}.hero{padding:35px 25px}.hero:after{font-size:180px}article{padding:12px 22px 42px}h2{font-size:23px}}
+    @media(max-width:520px){.sidebar nav{grid-template-columns:1fr}.hero h1{font-size:35px}.hero p{font-size:14px}article{padding:8px 16px 36px}.table-wrap{margin-left:-7px;margin-right:-7px}h2{font-size:21px}}
+    @media print{body{background:white;color:#111;font-size:11px}.sidebar,.top{display:none}.shell{display:block;max-width:none;padding:0}.hero{box-shadow:none;background:#102b3d;-webkit-print-color-adjust:exact;print-color-adjust:exact}article{border:0;box-shadow:none;background:white;padding:0}h2{break-after:avoid;color:#111}.table-wrap{break-inside:avoid}p,li,td{color:#222}}
+  </style>
+</head>
+<body id="top">
+  <div class="shell">
+    <aside class="sidebar"><div class="brand"><b>旋刀录</b><small>三幕远征设计文档</small></div><nav><a href="#一-游戏概述"><span>01</span>游戏概述</a><a href="#二-基本操作"><span>02</span>基本操作</a><a href="#三-核心游戏循环"><span>03</span>核心游戏循环</a><a href="#四-角色系统"><span>04</span>角色系统</a><a href="#五-武器与战斗系统"><span>05</span>武器与战斗系统</a><a href="#六-基础升级牌"><span>06</span>基础升级牌</a><a href="#七-六大核心流派"><span>07</span>六大核心流派</a><a href="#八-元素系统"><span>08</span>元素系统</a><a href="#九-经验与等级数值"><span>09</span>金币与商店</a><a href="#十-敌人与时间压力"><span>10</span>敌人与节点战斗</a><a href="#十一-遗物-神坛与诅咒"><span>11</span>遗物与事件</a><a href="#十二-死亡表现与视觉反馈"><span>12</span>死亡表现与视觉反馈</a><a href="#十三-成就系统"><span>13</span>成就系统</a><a href="#十四-数值策划思路"><span>14</span>数值策划思路</a><a href="#十五-开发思路与技术结构"><span>15</span>开发思路与技术结构</a><a href="#十六-性能设计"><span>16</span>性能设计</a><a href="#十七-音频设计"><span>17</span>音频设计</a><a href="#十八-测试与质量保证"><span>18</span>测试与质量保证</a><a href="#十九-后续迭代建议"><span>19</span>后续迭代建议</a><a href="#二十-对外分享方式"><span>20</span>对外分享方式</a></nav></aside>
+    <main>
+      <header class="hero"><div class="eyebrow">GAME DESIGN DOCUMENT</div><h1>旋刀录</h1><p>游戏说明 · 开发思路 · 数值策划 · 系统设计</p><div class="badges"><span>作者：狗狗侠</span><span>邮箱：853297940@qq.com</span><span>生存割草</span><span>Roguelite 构筑</span><span>Canvas 2D</span><span>六大流派</span><span>三名角色</span></div></header>
+      <article><h1 id="旋刀录-游戏说明与开发设计文档">《旋刀录》游戏说明与开发设计文档</h1>
+<p>版本：便携分享版 3.0（三幕远征） 类型：三幕路线 Roguelite / 俯视角动作割草 / Canvas 2D 推荐平台：Windows 桌面端，最新版 Chrome 或 Edge 作者：狗狗侠 联系邮箱：853297940@qq.com</p>
+<hr>
+<h2 id="一-游戏概述">一、游戏概述</h2>
+<p>《旋刀录》是一款以“环绕武器自动攻击”为核心的三幕路线 Roguelite。玩家通过随机路线、金币商店、构筑牌和 Boss 遗物形成流派。</p>
+<p>单局目标是连续完成三幕。每幕拥有 13～15 行随机路线和一名幕主，第三幕幕主是最终 Boss。</p>
+<p>游戏强调三种体验：</p>
+<ol><li><strong>操作简单但站位有深度</strong>：攻击自动进行，玩家专注走位、聚怪和拾取金币。</li><li><strong>路线风险明确</strong>：普通战积累金币，精英提供紫牌，商店和事件修正构筑。</li><li><strong>成长爽感清晰</strong>：武器数量、尺寸、转速、刀气、元素连锁和死亡效果都会随构筑逐渐强化。</li></ol>
+<hr>
+<h2 id="二-基本操作">二、基本操作</h2>
+<div class="table-wrap"><table><thead><tr><th>功能</th><th>键盘与鼠标</th><th>触屏</th></tr></thead><tbody><tr><td>移动</td><td>WASD 或方向键</td><td>按住并拖动屏幕形成虚拟摇杆</td></tr><tr><td>选择角色</td><td>数字键 1～3、左右方向键</td><td>点击角色卡</td></tr><tr><td>确认角色</td><td>回车或点击“踏入远征”</td><td>点击“踏入远征”</td></tr><tr><td>路线与构筑</td><td>点击可达节点或卡牌</td><td>点击可达节点或卡牌</td></tr><tr><td>暂停</td><td>Esc</td><td>使用页面暂停操作</td></tr><tr><td>继续游戏</td><td>Esc 或“继续游戏”</td><td>点击“继续游戏”</td></tr><tr><td>退出本局</td><td>暂停菜单中的“退出战斗”</td><td>点击“退出战斗”</td></tr></tbody></table></div>
+<p>其他界面功能：</p>
+<ul><li><strong>声音调节</strong>：支持开关及 0～100% 音量调节，并保存上次设置。</li><li><strong>画质切换</strong>：自动、流畅、高画质三档。</li><li><strong>成就殿堂</strong>：可按战斗、生存、成长、流派、元素、角色和特殊分类查看成就。</li></ul>
+<hr>
+<h2 id="三-核心游戏循环">三、核心游戏循环</h2>
+<p>一局游戏由以下循环构成：</p>
+<ol><li>选择角色并完成本幕开场三选一。</li><li>在每幕 13～15 层由下向上的羊皮路线图中选择相连节点；五条主路径自然汇合和分叉，每层通常出现 2～4 个节点。</li><li>第一幕普通战进入按节点种子生成的不规则房间，封门清除三波敌军并拾取金币。</li><li>精英战在 90 秒内斩杀目标并选择紫牌。</li><li>在商店购买六张随机牌，或访问休息点和事件。</li><li>在 120 秒内击败幕主；前两幕选择 Boss 遗物，第三幕胜利后通关。</li></ol>
+<p>敌人不再提供经验。右上角钱袋在远征期间固定显示金币；买不起的商店卡牌会置灰并显示差额。精英、事件、休息与普通战会展示实际奖励结算，确认后才返回路线。新远征使用稀疏多路径地图，每个节点通常只有一至两条出口；旧存档继续使用原四列拓扑。路线、商店、待选奖励、结算单和节点状态会自动保存；死亡或超时结束本局。</p>
+<p>第一幕普通战使用略大于一个视口的随机不规则单房，镜头在房间内跟随；三波敌军分别生成24、32和42只。高墙采用按朝向自动拼接的古风像素样式，由青灰石砖、暗青瓦檐、朱红木构和暖金包角组成，房间上沿设有分层山门门楼；装饰与碰撞继续读取同一份墙体地块。其他现有精英、幕主以及第二、第三幕继续沿用当前场地和限时配置。正式支持目标为 Windows 桌面键鼠。</p>
+<hr>
+<h2 id="四-角色系统">四、角色系统</h2>
+<h3 id="1.-玄刃-均衡">1. 玄刃 · 均衡</h3>
+<div class="table-wrap"><table><thead><tr><th>属性</th><th>数值</th></tr></thead><tbody><tr><td>生命</td><td>105</td></tr><tr><td>移动速度</td><td>230</td></tr><tr><td>基础伤害</td><td>14</td></tr><tr><td>初始武器</td><td>1 把宝剑</td></tr><tr><td>旋转速度</td><td>2.2 弧度/秒</td></tr><tr><td>暴击率</td><td>5%</td></tr><tr><td>同目标命中间隔</td><td>0.34 秒</td></tr><tr><td>护甲</td><td>0</td></tr></tbody></table></div>
+<p>被动“刀心流转”：每场战斗胜利恢复最大生命的 15%。</p>
+<p>定位：容错和输出较均衡，适合初次游玩，也适合长时间持续升级。恢复效果会随最大生命成长，因此与生命、防御和金钟流派具有自然联动。</p>
+<h3 id="2.-影刃-疾速">2. 影刃 · 疾速</h3>
+<div class="table-wrap"><table><thead><tr><th>属性</th><th>数值</th></tr></thead><tbody><tr><td>生命</td><td>80</td></tr><tr><td>移动速度</td><td>270</td></tr><tr><td>基础伤害</td><td>12</td></tr><tr><td>初始武器</td><td>2 把长枪</td></tr><tr><td>旋转速度</td><td>2.5 弧度/秒</td></tr><tr><td>暴击率</td><td>12%</td></tr><tr><td>同目标命中间隔</td><td>0.30 秒</td></tr><tr><td>武器尺寸</td><td>88%</td></tr></tbody></table></div>
+<p>被动“掠影杀机”：持续移动 1.2 秒可逐渐获得最多 15% 额外暴击；停止移动后，增益在 0.8 秒内衰减。</p>
+<p>定位：高机动、高频率、高风险。理论初始接触输出较高，但生命最低，需要玩家持续走位。飞刃、雷电、暴击和移动触发型能力与其最契合。</p>
+<h3 id="3.-镇岳-重甲">3. 镇岳 · 重甲</h3>
+<div class="table-wrap"><table><thead><tr><th>属性</th><th>数值</th></tr></thead><tbody><tr><td>生命</td><td>155</td></tr><tr><td>移动速度</td><td>195</td></tr><tr><td>基础伤害</td><td>16</td></tr><tr><td>初始武器</td><td>1 把大刀</td></tr><tr><td>旋转速度</td><td>1.95 弧度/秒</td></tr><tr><td>暴击率</td><td>3%</td></tr><tr><td>同目标命中间隔</td><td>0.38 秒</td></tr><tr><td>护甲</td><td>4</td></tr><tr><td>武器尺寸</td><td>115%</td></tr></tbody></table></div>
+<p>被动“镇岳玄甲”：抵挡一次伤害，消耗后 10 秒重新充能；抵挡时获得 0.35 秒无敌。</p>
+<p>定位：低机动、高生命、稳定防御。选择“金钟护身”后，镇岳自身玄甲被打破也能触发金钟爆炸，因此拥有最稳定的护盾反击循环。</p>
+<h3 id="角色初始输出参考">角色初始输出参考</h3>
+<p>可用“刀数 × 基础伤害 ÷ 命中间隔”估算武器持续贴身时的理论输出上限：</p>
+<div class="table-wrap"><table><thead><tr><th>角色</th><th>理论值</th><th>平衡方式</th></tr></thead><tbody><tr><td>玄刃</td><td>约 41.2</td><td>均衡属性与升级回血</td></tr><tr><td>影刃</td><td>约 80.0</td><td>低生命、较小武器、依赖持续移动</td></tr><tr><td>镇岳</td><td>约 42.1</td><td>低移动和低转速，换取高生命与减伤</td></tr></tbody></table></div>
+<p>该数值不等同于实战 DPS，因为敌人接触武器的时间、环绕半径、武器尺寸、走位和敌群密度都会影响实际命中率。</p>
+<hr>
+<h2 id="五-武器与战斗系统">五、武器与战斗系统</h2>
+<p>三个角色拥有不同武器造型、轨迹和打击声音：</p>
+<ul><li>玄刃使用宝剑，音色清亮均衡。</li><li>影刃使用细长双枪，音色短促尖锐。</li><li>镇岳使用厚重大刀，音色低沉有重量感。</li></ul>
+<p>飞刃天机、离心飞刃等技能会沿用当前角色的武器模型。玄刃飞出宝剑、影刃飞出长枪、镇岳飞出大刀，不使用统一的通用飞剑图片。</p>
+<p>基础伤害流程：</p>
+<ol><li>武器与敌人发生碰撞。</li><li>检查该武器对该敌人的命中冷却。</li><li>计算暴击，暴击率最高按 95% 处理。</li><li>伤害乘以暴击倍率和全局伤害倍率。</li><li>根据流派附加元素、击退、吸血、处决或其他效果。</li><li>敌人死亡后生成对应死因的清晰死亡表现和经验。</li></ol>
+<p>玩家受到伤害时采用固定减伤：</p>
+<p><code>实际伤害 = max(1, 敌人伤害 - 玩家护甲)</code></p>
+<p>普通受伤后获得 0.72 秒无敌时间，防止高密度敌群在同一帧连续扣除全部生命。</p>
+<hr>
+<h2 id="六-基础升级牌">六、基础升级牌</h2>
+<div class="table-wrap"><table><thead><tr><th>强化</th><th>单级效果</th><th>最大等级</th></tr></thead><tbody><tr><td>双刃同辉</td><td>刀刃数量 +1</td><td>6</td></tr><tr><td>疾风轮转</td><td>旋转速度 ×1.22</td><td>5</td></tr><tr><td>淬火锋芒</td><td>刀刃伤害 ×1.28</td><td>6</td></tr><tr><td>巨刃之势</td><td>尺寸 ×1.18，伤害 ×1.08</td><td>5</td></tr><tr><td>刀阵外放</td><td>环绕半径 ×1.16</td><td>4</td></tr><tr><td>连斩无隙</td><td>同目标命中间隔 ×0.84</td><td>5</td></tr><tr><td>踏雪无痕</td><td>移动速度 ×1.14</td><td>4</td></tr><tr><td>聚灵磁场</td><td>拾取范围 ×1.45</td><td>4</td></tr><tr><td>金刚血气</td><td>最大生命 +25，恢复 35</td><td>4</td></tr><tr><td>玄铁护体</td><td>护甲 +3</td><td>4</td></tr><tr><td>生生不息</td><td>每秒恢复 +0.7</td><td>4</td></tr><tr><td>会心一击</td><td>暴击率 +9%，暴击伤害 +12%</td><td>5</td></tr><tr><td>崩山劲</td><td>击退强度 ×1.45</td><td>3</td></tr><tr><td>饮血刀意</td><td>击杀回血概率 +12%</td><td>3</td></tr><tr><td>圆月刀气</td><td>开启周期刀气，冷却 ×0.76</td><td>4</td></tr></tbody></table></div>
+<p>卡牌拥有权重。刀数、伤害和转速等基础牌更常见，流派机制牌和元素牌更稀有。确定流派后，与流派标签匹配的卡牌权重会提高约 2.8 倍，使构筑更容易成型，同时仍保留少量跨流派选择。</p>
+<p>当普通卡池耗尽时，无尽强化会兜底：</p>
+<ul><li>无尽锋芒：伤害 ×1.12。</li><li>无尽血气：最大生命 +12，并恢复 18。</li><li>无尽疾行：移动和旋转速度 ×1.06。</li></ul>
+<p>因此 20 级后仍能持续成长，不会出现升级但无牌可选的情况。</p>
+<hr>
+<h2 id="七-六大核心流派">七、六大核心流派</h2>
+<p>玩家在 5 级选择核心流派。10、15、20 级分别从该流派的三条分支中选择一次专属超级构筑。</p>
+<h3 id="1.-万刃宗">1. 万刃宗</h3>
+<p>核心：刀数、双环、转速和残影。</p>
+<p>选中后立即获得 2 把刀、12% 转速和一层反向内环。三条分支为：</p>
+<ul><li><strong>万刃路线</strong>：七星刀阵 → 百刃朝宗 → 万刃归宗。</li><li><strong>旋风路线</strong>：阴阳轮转 → 三重风眼 → 无尽刃轮。</li><li><strong>残影路线</strong>：留影刀痕 → 千层残月 → 时隙刀域。</li></ul>
+<p>玩法目标是扩大持续接触面积，用多层刀环和残影覆盖怪潮。缺点是单次打击较轻，面对高生命敌人时更依赖伤害与命中间隔成长。</p>
+<h3 id="2.-巨刃修罗">2. 巨刃修罗</h3>
+<p>核心：自动发射修罗巨刃、巨刃数量、范围、频率、暴击和吸血。</p>
+<p>选中后不会改变常驻环刃的数量与基础伤害，而是解锁独立的修罗巨刃发射器。初始每 4.55 秒朝最近敌人的方向发出一道贯穿型巨刃，范围约 177 px，单次伤害约为基础伤害的 4.1 倍。</p>
+<p>修罗巨刃采用放大版圆月刀气的月牙轮廓，并叠加血金外辉、白色刃芯、多层残像、刃尖高光与火花。巨刃向前飞行并贯穿路径上的敌人，专属成长可增加同时发射的巨刃数量。</p>
+<p>三条分支为：</p>
+<ul><li><strong>巨刃路线</strong>：破军巨刃 → 裂空双刃 → 修罗天刃。</li><li><strong>血月连斩</strong>：圆月连斩 → 血月追魂 → 天外断界。</li><li><strong>饮血路线</strong>：饮血狂刀 → 修罗血海 → 不死魔刃，在提高暴击与吸血的同时专门强化巨刃伤害。</li></ul>
+<p>修罗巨刃初始冷却为 4.55 秒。“巨刃蓄势”和血月分支会直接缩短冷却，最低为 1.7 秒；冷却、范围和伤害分别成长，卡片展示的每项增幅不会附带未说明的隐藏提升。</p>
+<p>玩法目标是通过走位调整发射方向，让低频但极强的巨刃覆盖整列怪潮。弱点是巨刃攻击空档明显，需要用常驻环刃维持近身防线。</p>
+<h3 id="3.-飞刃天机">3. 飞刃天机</h3>
+<p>核心：追踪飞刃、弹射、远程刀气和雷电连锁。</p>
+<p>选中后获得 2 级飞刃、1 次弹射并开启圆月刀气。飞出的武器继承角色当前武器样式。</p>
+<p>三条分支为：</p>
+<ul><li><strong>飞刃数量</strong>：三才飞刃 → 天罗刃网 → 无量飞剑。</li><li><strong>弹射雷网</strong>：折光弹射 → 九曲追魂 → 雷霆天网。</li><li><strong>远程刀气</strong>：破空刀气 → 万里追风 → 虚空刃潮。</li></ul>
+<p>玩法目标是降低贴身战斗风险，依靠自动追踪清理分散敌人。对单体目标需要通过弹射、雷电或全局伤害补强。</p>
+<h3 id="4.-五行刀尊">4. 五行刀尊</h3>
+<p>核心：异常叠层、元素连锁和组合反应。</p>
+<p>选中后立即获得烈火与雷霆，元素强度 +2，连锁次数 +1。</p>
+<p>三条分支为：</p>
+<ul><li><strong>火雷路线</strong>：火雷共鸣 → 爆燃雷狱 → 九霄劫火。</li><li><strong>冰血路线</strong>：冰血相融 → 碎骨寒轮 → 极寒绞杀。</li><li><strong>毒火路线</strong>：毒火蚀骨 → 腐界毒云 → 万毒焚天。</li></ul>
+<p>元素触发具有鲜明视觉和声音：雷电使用黄色连锁闪电与电击声；火焰产生爆燃和火环；冰冻形成冰晶和冻结轮廓；剧毒产生绿色腐蚀烟雾和毒焰。</p>
+<h3 id="5.-金钟护身">5. 金钟护身</h3>
+<p>核心：恢复护盾、破盾爆炸、护甲、恢复和短暂无敌。</p>
+<p>选中后获得金钟护盾、5 点护甲、每秒 1 点恢复和 30 点最大生命。护盾被打破时生成黄色钟型特效，对圆形范围内的敌人造成伤害，然后进入恢复冷却。</p>
+<p>基础金钟数据：</p>
+<div class="table-wrap"><table><thead><tr><th>项目</th><th>数值</th></tr></thead><tbody><tr><td>恢复时间</td><td>8 秒</td></tr><tr><td>爆炸伤害</td><td>玩家伤害 ×1.8</td></tr><tr><td>爆炸半径</td><td>135</td></tr><tr><td>破盾无敌</td><td>0.4 秒</td></tr></tbody></table></div>
+<p>三条分支为：</p>
+<ul><li><strong>恢复路线</strong>：金钟吐纳 → 周天回护 → 不灭金钟。</li><li><strong>震爆路线</strong>：震钟罡爆 → 八方钟鸣 → 天罡震界。</li><li><strong>金身路线</strong>：护心罡气 → 金身不坏 → 金钟护身。</li></ul>
+<p>镇岳选择本流派后，其角色自带玄甲被消耗时同样会触发金钟爆炸，但不会额外消耗已经处于冷却中的金钟护盾。</p>
+<h3 id="6.-一刀倾城">6. 一刀倾城</h3>
+<p>核心：单武器、单刀伤害、单刀体积，以及以降低转速为代价的诅咒强化。</p>
+<p>选中后无论此前拥有多少武器，都会固定为 1 把常驻刀刃；基础伤害提高至 2.5 倍，刀刃体积提高至 1.7 倍。诅咒代价是旋转速度降低 28%。一刀倾城不会生成内层刀环，后续也不会再出现增加刀数或内层刀环的选项。</p>
+<p>三条分支为：</p>
+<ul><li><strong>绝世锋芒</strong>：倾城一斩 → 绝世锋芒 → 一刀倾天下，专注提高单刀伤害。</li><li><strong>倾城巨刃</strong>：长锋照影 → 巨刃倾城 → 横刀断界，专注扩大唯一刀刃的体积。</li><li><strong>转速诅咒</strong>：敛锋蓄势 → 静刃藏锋 → 刹那倾城，进一步降低转速，换取更高伤害与更大体积。</li></ul>
+<p>10、15、20 级三阶段的对应数值为：</p>
+<div class="table-wrap"><table><thead><tr><th>路线</th><th>10 级</th><th>15 级</th><th>20 级</th></tr></thead><tbody><tr><td>绝世锋芒</td><td>伤害 +35%</td><td>伤害 +60%</td><td>伤害 +100%</td></tr><tr><td>倾城巨刃</td><td>体积 +25%</td><td>体积 +45%</td><td>体积 +70%</td></tr><tr><td>转速诅咒</td><td>转速 -12%；伤害 +30%；体积 +10%</td><td>转速 -22%；伤害 +55%；体积 +20%</td><td>转速 -34%；伤害 +90%；体积 +35%</td></tr></tbody></table></div>
+<p>该流派的玩法重点是预判刀锋轨迹，用缓慢但巨大的单次切割处理高生命目标。它的覆盖频率明显低于多刀流派，走位需要主动配合刀锋当前角度。</p>
+<hr>
+<h2 id="八-元素系统">八、元素系统</h2>
+<div class="table-wrap"><table><thead><tr><th>元素</th><th>主要作用</th></tr></thead><tbody><tr><td>烈火</td><td>叠加燃烧，周期性造成持续伤害</td></tr><tr><td>寒冰</td><td>叠加寒霜，累计后冻结敌人</td></tr><tr><td>雷霆</td><td>概率触发黄色连锁闪电</td></tr><tr><td>剧毒</td><td>叠加较长时间的中毒效果</td></tr><tr><td>流血</td><td>为冰血、处决和高速目标伤害提供联动</td></tr></tbody></table></div>
+<p>主要元素反应：</p>
+<ul><li><strong>火 + 雷</strong>：触发爆燃火环，对周围敌人造成范围伤害。</li><li><strong>冰 + 雷</strong>：雷击附加短暂冻结控制。</li><li><strong>火 + 毒</strong>：提高燃烧和中毒层数，并出现毒焰特效。</li><li><strong>冰 + 血</strong>：配合极寒绞杀提高对重伤目标的处决能力。</li></ul>
+<p>雷电基础触发概率为 <code>16% + 6% × 连锁等级</code>。连锁范围约为 <code>150 + 8 × 元素强度</code>，单次连锁伤害约为基础伤害的 <code>35% + 9% × 元素强度</code>，再乘全局伤害倍率。</p>
+<p>为了保持爽感同时避免声音和特效过载，各元素分别设置了极短的音效与视觉冷却。高频命中时会合并反馈，而不是每次碰撞都创建新的声音节点和粒子。</p>
+<hr>
+<h2 id="九-经验与等级数值">九、经验与等级数值</h2>
+<p>第一阶段升级所需经验为 65。之后使用以下成长公式：</p>
+<p><code>需求经验 = floor(55 + 等级 × 26 + 等级² × 2.15)</code></p>
+<p>20 级以后额外乘以：</p>
+<p><code>1.1^(等级 - 19)</code></p>
+<p>设计目的：</p>
+<ul><li>前期升级快，让玩家尽早接触关键强化。</li><li>5 级确定流派，避免构筑方向出现得太晚。</li><li>10、15、20 级提供固定质变节点，形成明确阶段目标。</li><li>20 级后用指数项放缓升级速度，避免后期卡牌和属性无限膨胀过快。</li><li>每 5 级仍提供宗师精进，维持长期成长反馈。</li></ul>
+<p>经验掉落会被拆成最多 4 颗经验球，以控制场上对象数量。经验物体上限为 360，寿命为 28 秒。</p>
+<hr>
+<h2 id="十-敌人与时间压力">十、敌人与时间压力</h2>
+<h3 id="基础敌人">基础敌人</h3>
+<div class="table-wrap"><table><thead><tr><th>类型</th><th>基础生命</th><th>速度</th><th>伤害</th><th>经验</th><th>特点</th></tr></thead><tbody><tr><td>普通怪</td><td>28</td><td>58</td><td>10</td><td>7</td><td>均衡近战单位</td></tr><tr><td>迅捷怪</td><td>18</td><td>112</td><td>8</td><td>6</td><td>体型小、快速包抄</td></tr><tr><td>重甲怪</td><td>105 起</td><td>38</td><td>17</td><td>17</td><td>生命高、压缩走位空间</td></tr><tr><td>施法怪</td><td>48 起</td><td>43</td><td>12</td><td>13</td><td>保持距离并发射弹丸</td></tr><tr><td>镇守者</td><td>850 × 阶段</td><td>49/52</td><td>24/27</td><td>90 × 阶段</td><td>3 分钟和 6 分钟出现，掉落遗物</td></tr><tr><td>最终首领</td><td>基础 2600</td><td>42</td><td>26</td><td>300</td><td>10 分钟出现，多方向弹幕</td></tr></tbody></table></div>
+<p>基础刷怪速度为：</p>
+<p><code>每秒刷怪数 = min(11, 1.15 + 战斗时间 ÷ 48)</code></p>
+<p>敌人还会根据战斗时间和玩家等级提高生命、伤害与速度。3 分钟后进入明显的后期成长区间，普通怪和迅捷怪的生命增长幅度最高，避免高成型构筑完全失去压力。</p>
+<p>普通敌人在 2 分钟后有概率成为精英。基础精英概率会从约 4% 随时间提高，最高约 16%。精英单位约获得更大的体型、4 倍生命、1.5 倍伤害和 5 倍经验，并可能掉落强化宝箱。</p>
+<h3 id="战场事件节奏">战场事件节奏</h3>
+<ul><li>第一次世界事件约在 70 秒发生，之后每 65～85 秒一次。</li><li>命运神坛主要在约 95 秒和 300 秒出现。</li><li>第一镇守者在 180 秒出现。</li><li>第二镇守者在 360 秒出现。</li><li>最终首领在 600 秒出现。</li></ul>
+<p>世界事件包括经验灵雨、精英狂潮、灵泉恢复和刀魂共鸣，使每局的中期节奏不完全相同。</p>
+<hr>
+<h2 id="十一-遗物-神坛与诅咒">十一、遗物、神坛与诅咒</h2>
+<p>镇守者会提供三选一遗物。遗物属于高影响、低频率奖励，例如：</p>
+<ul><li>猎魔天眼：精英和首领低于 18% 生命时处决。</li><li>不死玄玉：最大生命 +60，每秒恢复 +3。</li><li>刀皇冠冕：所有伤害 +35%，暴击率 +15%。</li><li>饕餮钱匣：经验 +60%，宝箱率提高至 5.5%。</li><li>轮回古镜：强化内外刀环并增加 2 把刀。</li></ul>
+<p>命运神坛提供“收益 + 代价”的选择，例如增加伤害但失去生命、增加生命但降低转速，或提高速度但缩小武器。其作用是打破常规成长曲线，让玩家主动承担风险。</p>
+<p>诅咒牌同样采用高风险高收益设计：</p>
+<ul><li>修罗心：伤害 +70%，最大生命 -30%。</li><li>狂风症：转速翻倍，单次伤害 -28%。</li><li>巨灵禁术：尺寸与伤害大幅提高，移动速度降低。</li><li>孤刀绝境：只保留一把刀，获得 3 倍伤害和更大范围。</li><li>招灾之印：精英更多，经验增加，宝箱率由 1.1% 提高至 2%。</li></ul>
+<p>当玩家集齐特定能力时，还能形成万刃归宗、修罗天刃、雷霆追魂刃、焚天刀域、不灭金钟阵、极寒绞杀轮、血月轮回和无相魔刀等进化组合。</p>
+<hr>
+<h2 id="十二-死亡表现与视觉反馈">十二、死亡表现与视觉反馈</h2>
+<p>敌人的外形按功能区分：普通怪、迅捷怪、重甲怪、施法怪、镇守者、精英和首领具有不同轮廓与内部纹样。</p>
+<p>死亡表现不会使用难以理解的随机特效，而是根据致死来源展示明确结果：</p>
+<div class="table-wrap"><table><thead><tr><th>致死来源</th><th>死亡表现</th></tr></thead><tbody><tr><td>普通刀刃、飞刃、刀气</td><td>斩切效果</td></tr><tr><td>巨刃重斩</td><td>更宽、更强的断裂效果</td></tr><tr><td>暴击</td><td>金色爆裂线</td></tr><tr><td>火焰</td><td>灼烧与余烬</td></tr><tr><td>寒冰</td><td>冰封与碎裂</td></tr><tr><td>雷电</td><td>黄色电击纹路</td></tr><tr><td>剧毒</td><td>绿色腐蚀与毒液</td></tr><tr><td>流血</td><td>血痕散射</td></tr><tr><td>金钟爆炸</td><td>金色钟震圆环</td></tr></tbody></table></div>
+<p>视觉设计的原则是让玩家能从死亡结果反推“是哪种能力完成了击杀”，同时避免死亡动画持续过久遮挡战场。</p>
+<hr>
+<h2 id="十三-成就系统">十三、成就系统</h2>
+<p>游戏包含 51 项持久化成就，分为七类：</p>
+<ul><li>战斗：累计击杀、暴击击杀、元素击杀、巨刃击杀、首领击杀。</li><li>生存：存活 1/3/5/10 分钟、开始局数、胜利次数。</li><li>成长：等级、刀数、武器尺寸、速度和暴击率。</li><li>流派：体验六大核心流派及全部流派。</li><li>元素：获得每种元素及集齐全部元素。</li><li>角色：三名角色分别出战和获胜。</li><li>特殊：金钟爆炸、死亡效果收集、总经验和累计战斗时间。</li></ul>
+<p>成就数据保存在浏览器本地存储中。更换电脑、浏览器或清除浏览器数据后，记录可能不会保留。</p>
+<hr>
+<h2 id="十四-数值策划思路">十四、数值策划思路</h2>
+<h3 id="1.-角色平衡采用-不对称等价">1. 角色平衡采用“不对称等价”</h3>
+<p>三名角色不追求相同的初始 DPS，而是分别出售不同优势：</p>
+<ul><li>玄刃出售稳定恢复与通用性。</li><li>影刃出售高频输出和操作上限。</li><li>镇岳出售防御容错和护盾联动。</li></ul>
+<p>角色强度需要从生命、移动、覆盖面积、实际接触率、被动和流派相性综合评估，不能只比较基础伤害。</p>
+<h3 id="2.-大部分输出成长使用乘法">2. 大部分输出成长使用乘法</h3>
+<p>伤害、转速、尺寸和冷却多采用乘法成长，让连续选择同一方向时产生明显的构筑质变。其代价是后期容易出现指数膨胀，因此敌人也按时间和等级双重成长，并设置 20 级后的经验指数项。</p>
+<h3 id="3.-防御采用固定减伤和短暂无敌">3. 防御采用固定减伤和短暂无敌</h3>
+<p>固定护甲对大量低伤害敌人非常有效，但对首领和高伤害单位不会完全失效或完全免疫。最低伤害固定为 1，保证玩家不能仅靠护甲成为永久无敌。</p>
+<h3 id="4.-流派节点固定-普通升级随机">4. 流派节点固定，普通升级随机</h3>
+<p>5、10、15、20 级固定出现关键流派选择，保证玩家每局都能形成完整构筑；普通等级仍采用三选一随机卡牌，保留 Roguelite 的变化。</p>
+<h3 id="5.-稀有机制与基础属性分层">5. 稀有机制与基础属性分层</h3>
+<p>基础伤害、转速和生命等牌负责稳定成长；飞刃、双环、元素、重斩和金钟负责改变玩法。这样即使玩家未抽到理想机制，也不会完全失去战斗力。</p>
+<h3 id="6.-风险收益必须可感知">6. 风险收益必须可感知</h3>
+<p>诅咒和神坛的收益足够大，玩家才有选择它们的理由；代价则必须在卡牌上直接写明，并能在操作或生存压力中立即感受到。</p>
+<hr>
+<h2 id="十五-开发思路与技术结构">十五、开发思路与技术结构</h2>
+<p>项目使用 Vanilla JavaScript、ES Modules、Vite 和 Canvas 2D，不引入运行时前端框架或游戏引擎。</p>
+<p>源码按职责拆分：</p>
+<div class="table-wrap"><table><thead><tr><th>模块</th><th>职责</th></tr></thead><tbody><tr><td><code>main.js</code></td><td>页面启动入口</td></tr><tr><td><code>game.js</code></td><td>游戏状态、循环、战斗、升级、流派和 UI 协调</td></tr><tr><td><code>characters.js</code></td><td>角色定义、初始属性和被动状态</td></tr><tr><td><code>sprites.js</code></td><td>玩家与武器精灵缓存和绘制资源</td></tr><tr><td><code>audio.js</code></td><td>Web Audio 音效、音量和静音状态</td></tr><tr><td><code>performance.js</code></td><td>数组原地压缩、距离计算、帧统计和固定随机数</td></tr><tr><td><code>achievements.js</code></td><td>成就定义、进度、持久化和界面</td></tr><tr><td><code>styles.css</code></td><td>菜单、HUD、卡牌、暂停和移动端样式</td></tr></tbody></table></div>
+<p>开发原则：</p>
+<ul><li>角色静态定义与单局运行状态分离，重开时完整清理。</li><li>升级奖励和外部奖励分别排队，防止高等级连续升级丢失选项。</li><li>武器造型使用高分辨率离屏 Canvas 缓存，放大时减少模糊和错位。</li><li>角色资源加载失败时仍可使用程序化绘制造型，不阻止游戏启动。</li><li>通过 <code>window.__gameDebug</code> 暴露可重复测试接口，而不把调试逻辑散布在 UI 代码中。</li></ul>
+<hr>
+<h2 id="十六-性能设计">十六、性能设计</h2>
+<p>性能目标是现代四核桌面设备在高压场景下稳定接近 60 FPS。</p>
+<p>主要优化手段：</p>
+<ul><li>每帧只重建一次敌人空间网格。</li><li>碰撞查询复用数组，减少临时对象和垃圾回收。</li><li>热路径优先使用平方距离，避免大量 <code>Math.hypot</code>。</li><li>敌人、粒子、弹丸、文本和特效使用原地压缩清理，避免连续 <code>filter()</code> 分配。</li><li>仅绘制视口附近对象。</li><li>玩家与武器静态图形使用离屏 Canvas 缓存。</li><li>中低画质减少粒子、阴影、发光和绘制密度。</li><li>页面不可见时暂停更新和音频，恢复时重置帧时间。</li></ul>
+<p>对象数量上限：</p>
+<div class="table-wrap"><table><thead><tr><th>对象</th><th>上限</th></tr></thead><tbody><tr><td>敌人</td><td>130</td></tr><tr><td>经验</td><td>360</td></tr><tr><td>粒子</td><td>650</td></tr><tr><td>战斗文字</td><td>220</td></tr><tr><td>敌方弹丸/斩击</td><td>140</td></tr><tr><td>玩家投射物</td><td>60</td></tr><tr><td>刀痕</td><td>90</td></tr><tr><td>飞刃</td><td>45</td></tr><tr><td>元素特效</td><td>140</td></tr><tr><td>死亡特效</td><td>18</td></tr></tbody></table></div>
+<p>自动画质采用带迟滞的三级策略：连续慢帧达到阈值才降档，连续稳定快速帧达到更长阈值才升档，避免在临界帧率附近反复跳变。</p>
+<hr>
+<h2 id="十七-音频设计">十七、音频设计</h2>
+<p>音频采用混合架构：角色命中、暴击、受伤、格挡、核心技能和强敌登场使用 <code>assets/audio</code> 中的短采样，并叠加像素风瞬态；升级、界面、拾取和元素反馈仍由 Web Audio API 实时合成。正式采样映射集中在 <code>game-sfx-manifest.js</code>，便于逐项替换。</p>
+<p>采样通过可重叠的 <code>HTMLAudioElement</code> 音频池播放，并对变体施加轻微随机播放速率。普通命中每秒最多保留约 12 个逻辑事件，暴击、格挡、重技能和首领登场拥有更高优先级。界面继续提供 0～100% 总音量调节。</p>
+<p>页面隐藏时合成音频会暂停，正在播放的采样会停止；重新回到页面后恢复。受浏览器自动播放策略影响，首次播放声音前需要玩家先点击页面按钮进入游戏。</p>
+<hr>
+<h2 id="十八-测试与质量保证">十八、测试与质量保证</h2>
+<p>项目包含以下验证方式：</p>
+<ul><li>Vitest：角色初始值、被动触发与重置、音量、成就、帧统计和确定性随机数。</li><li>Playwright：选角、键盘操作、开始、升级、死亡、返回选角、桌面与移动布局。</li><li>固定种子压力场景：130 敌人、360 经验、650 粒子、14 把刀、90 刀痕和 45 飞刃。</li><li>调试接口：指定流派、元素演示、金钟演示、怪物死亡效果演示和性能统计。</li></ul>
+<p>便携分享版会把生产脚本与样式嵌入“打开游戏.html”，避开本地 <code>file://</code> 环境对外部模块脚本的限制；角色徽记保留在 <code>assets</code> 文件夹中。</p>
+<hr>
+<h2 id="十九-后续迭代建议">十九、后续迭代建议</h2>
+<h3 id="优先级较高">优先级较高</h3>
+<ol><li>为每个流派增加独立结算统计，例如元素伤害、金钟伤害和巨刃击杀。</li><li>增加局内构筑总览，允许暂停时查看所有强化等级和具体数值。</li><li>加入简单存档导入/导出，方便玩家跨浏览器保存成就。</li><li>根据实际玩家数据继续平衡影刃前期输出、巨刃后期爆发和金钟循环频率。</li></ol>
+<h3 id="中长期方向">中长期方向</h3>
+<ol><li>新增地图、环境障碍和不同首领。</li><li>增加角色专属升级牌和角色解锁目标。</li><li>增加难度等级、无尽模式和每日固定种子挑战。</li><li>将实时合成音效与少量高品质采样结合，增强打击层次。</li><li>若对象规模继续扩大，可评估 WebGL 渲染，但当前规模下 Canvas 2D 更简单且足够稳定。</li></ol>
+<hr>
+<h2 id="二十-对外分享方式">二十、对外分享方式</h2>
+<p>将“旋刀录-便携分享版.zip”发送给玩家。玩家完整解压后，双击“打开游戏.html”即可运行，无需安装 Node.js，也不需要启动本地服务器。</p>
+<p>分享时必须保留整个文件夹结构，不要只单独发送 HTML 或角色资源文件。</p>
+<hr>
+<h2 id="二十一-像素首页与角色选择">二十一、像素首页与角色选择</h2>
+<p>《旋刀录》首页与角色选择已经拆分为两个独立界面。首页提供继续游戏、开始游戏、成就和怪物图鉴入口；开始游戏进入单角色轮播选角，确认角色后才创建新远征。</p>
+<p>已有远征存档时，进入选角不会修改存档；只有点击“开始远征”并确认覆盖后才清除旧进度。角色选择支持鼠标、方向键、数字键 1～3、Enter 和 Escape。</p>
+<p>首页群像使用本地 <code>assets/ui/home-hero.svg</code>，项目目录和 localStorage 键保持旧值以兼容既有记录。</p></article>
+      <footer class="footer">《旋刀录》游戏说明与开发设计文档 · 作者：狗狗侠 · 联系邮箱：853297940@qq.com · 便携分享版 3.0</footer>
+    </main>
+  </div>
+  <a class="top" href="#top" aria-label="返回顶部">↑</a>
+</body>
+</html>
